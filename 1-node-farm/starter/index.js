@@ -1,18 +1,19 @@
 const fs = require("fs");
+const http = require("http");
 
 ////////////////////////////////////////
 // FILES
 
 //Blocking, synchronous way
-const inputText = fs.readFileSync("./txt/input.txt", "utf-8");
+/* const inputText = fs.readFileSync("./txt/input.txt", "utf-8");
 console.log(inputText);
 
 const outputText = `This is what we know about avocado: ${inputText}.\nCreated on ${Date.now()}`;
 fs.writeFileSync("./txt/output.txt", outputText);
-console.log("Done!");
+console.log("Done!"); */
 
 //Non-blocking, asynchronous way
-fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
+/* fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
   if (err) return console.log("Error");
   fs.readFile(`./txt/${data1}.txt`, "utf-8", (err, data2) => {
     console.log(data2);
@@ -27,3 +28,15 @@ fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
 });
 
 console.log("read file");
+ */
+
+////////////////////////////////////////
+// SERVER
+
+const server = http.createServer((req, res) => {
+  res.end("Hello from the server");
+});
+
+server.listen(3000, "127.0.0.1", () => {
+  console.log("Listening to server on port 3000");
+});
